@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class BrickController : MonoBehaviour
@@ -17,8 +18,10 @@ public class BrickController : MonoBehaviour
         GameManager.Instance = GameObject.FindObjectOfType<GameManager>();
     }
 
-    private void OnCollisionEnter2D(Collision2D col) {
+    private void OnCollisionEnter2D(Collision2D col) 
+    {
         health -= 1;
+        GetComponentInChildren<TMP_Text>().text = health.ToString();
         if(health <= 0) {
             BlockNumbers -= 1;
             Destroy(gameObject);

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
             transform.position.z
         ));
 
-        mousePos.x = Mathf.Clamp(mousePos.x, -2.09f, 2.09f);
+        mousePos.x = Mathf.Clamp(mousePos.x, -2.3f, 2.3f);
         
         transform.position = new Vector3(
             mousePos.x,
