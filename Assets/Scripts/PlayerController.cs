@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter_Controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     void Update()
     {
