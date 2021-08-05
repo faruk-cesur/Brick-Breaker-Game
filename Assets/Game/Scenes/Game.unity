@@ -370,6 +370,7 @@ MonoBehaviour:
   brickPosX: {x: 0, y: 0, z: 0}
   verticalBricks: 0
   ballStartPos: {x: 0, y: 0, z: 0}
+  parentBrick: {fileID: 459506242}
 --- !u!4 &1415193692
 Transform:
   m_ObjectHideFlags: 0
@@ -410,6 +411,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &1763691049 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 760101069529867635, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
+  m_PrefabInstance: {fileID: 6359874073229514562}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763691047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d52c7b19322f5a04eab93e6afeb2a9f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1887565422
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -488,7 +500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3169849572724410726, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.67
+      value: -3.6
       objectReference: {fileID: 0}
     - target: {fileID: 3169849572724410726, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
       propertyPath: m_LocalPosition.z
@@ -526,6 +538,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6041921684434881280, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
+      propertyPath: playerController
+      value: 
+      objectReference: {fileID: 1763691049}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
 --- !u!1001 &6359874073229514562

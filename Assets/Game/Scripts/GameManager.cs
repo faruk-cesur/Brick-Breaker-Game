@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public Vector3 brickPosX;
     [HideInInspector] public int verticalBricks = 0;
     public Vector3 ballStartPos;
+    public GameObject parentBrick;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
                 for (int j = 0; j < 5; j++)
                 {
                     randomBrick = Random.Range(0, 6);
-                    spawnedBrick = Instantiate(bricks[randomBrick], brickPos, Quaternion.identity);
+                    spawnedBrick = Instantiate(bricks[randomBrick], brickPos, Quaternion.identity,parentBrick.transform);
                     brickPos = brickPos - brickPosY;
                     spawnedBricks.Add(spawnedBrick);
                 }

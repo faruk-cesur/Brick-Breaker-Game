@@ -7,12 +7,13 @@ using Random = UnityEngine.Random;
 public class BallController : MonoBehaviour
 {
     [Header("Components")] private Rigidbody2D rb;
+    public PlayerController playerController;
     private bool isStarted;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-       
+        gameObject.transform.SetParent(playerController.gameObject.transform);
     }
 
     private void Update()
@@ -21,6 +22,7 @@ public class BallController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                gameObject.transform.SetParent(null);
                 rb.constraints = RigidbodyConstraints2D.None;
                 rb.AddForce(Vector3.up * 300f);
                 isStarted = true;
@@ -43,12 +45,14 @@ public class BallController : MonoBehaviour
             for (int i = 0; i < 5; i++)
             {
                 GameManager.Instance.randomBrick = Random.Range(0, 6);
-                GameManager.Instance.spawnedBrick = Instantiate(GameManager.Instance.bricks[GameManager.Instance.randomBrick], GameManager.Instance.brickPos, Quaternion.identity);
+                GameManager.Instance.spawnedBrick = Instantiate(GameManager.Instance.bricks[GameManager.Instance.randomBrick], GameManager.Instance.brickPos, Quaternion.identity,GameManager.Instance.parentBrick.transform);
                 GameManager.Instance.brickPos = GameManager.Instance.brickPos + new Vector3(1,0,0);
                 GameManager.Instance.spawnedBricks.Add(GameManager.Instance.spawnedBrick);
             }
 
             transform.position = GameManager.Instance.ballStartPos;
+            playerController.gameObject.transform.position = new Vector3(0, -4, 0);
+            gameObject.transform.SetParent(playerController.gameObject.transform);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             isStarted = false;
         }
