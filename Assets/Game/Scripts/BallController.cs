@@ -6,10 +6,11 @@ public class BallController : MonoBehaviour
 {
     public PlayerController playerController;
     public BrickSpawner brickSpawner;
-    private bool _isStarted;
-    private Rigidbody2D _rb;
-    private int _collisionMeter;
     [HideInInspector] public Vector3 ballStartPos;
+    private Rigidbody2D _rb;
+    private bool _isStarted;
+    private int _collisionMeter;
+    private float _elapsedTime;
 
 
     void Start()
@@ -21,15 +22,36 @@ public class BallController : MonoBehaviour
 
     private void Update()
     {
+        StartMove();
+        FixBugBallPosition();
+    }
+
+    private void StartMove()
+    {
         if (_isStarted == false)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 gameObject.transform.SetParent(null);
                 _rb.constraints = RigidbodyConstraints2D.None;
-                _rb.AddForce(Vector3.up * 300f);
+                _rb.velocity = Vector2.up * 10f;
                 _isStarted = true;
             }
+        }
+    }
+
+    private void FixBugBallPosition()
+    {
+        _elapsedTime += Time.deltaTime;
+
+        if (_elapsedTime >= 20)
+        {
+            transform.position = ballStartPos;
+            playerController.gameObject.transform.position = new Vector3(0, -4, 0);
+            gameObject.transform.SetParent(playerController.gameObject.transform);
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _isStarted = false;
+            _elapsedTime = 0;
         }
     }
 
@@ -66,6 +88,7 @@ public class BallController : MonoBehaviour
         if (deathArea)
         {
             MoveDownSpawnBricks();
+            _collisionMeter = 0;
         }
     }
 
@@ -75,6 +98,7 @@ public class BallController : MonoBehaviour
 
         if (player)
         {
+            _elapsedTime = 0;
             _collisionMeter++;
             if (_collisionMeter % 25 == 0)
             {

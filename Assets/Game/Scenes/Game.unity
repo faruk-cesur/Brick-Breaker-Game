@@ -573,6 +573,10 @@ PrefabInstance:
       propertyPath: m_GravityScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5322203438669304112, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6041921684434881280, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
       propertyPath: brickSpawner
       value: 
@@ -601,6 +605,10 @@ PrefabInstance:
     - target: {fileID: 7296337791179868289, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296337791179868289, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7296337791179868289, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
       propertyPath: m_LocalPosition.x
