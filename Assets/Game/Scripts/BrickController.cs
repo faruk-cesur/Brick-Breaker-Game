@@ -1,26 +1,25 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class BrickController : MonoBehaviour
 {
     public int health;
-    public static int BlockNumbers;
-    public bool breakingBlocks;
+    public static int brickNumbers;
+    public bool breakingBricks;
     private bool isCollide;
+
+
     void Start()
     {
-        breakingBlocks = (this.tag == "Block");
-        if (breakingBlocks)
+        breakingBricks = (this.tag == "Block");
+        if (breakingBricks)
         {
-            BlockNumbers++;
+            brickNumbers++;
         }
 
-        GameManager.Instance = GameObject.FindObjectOfType<GameManager>();
+        GameManager.instance = GameObject.FindObjectOfType<GameManager>();
     }
-    
+
 
     private void OnCollisionEnter2D(Collision2D other)
     {
@@ -32,12 +31,12 @@ public class BrickController : MonoBehaviour
             GetComponentInChildren<TMP_Text>().text = health.ToString();
             if (health <= 0)
             {
-                BlockNumbers -= 1;
+                brickNumbers -= 1;
                 gameObject.SetActive(false);
-                GameManager.Instance.AfterScene();
+                GameManager.instance.AfterScene();
             }
         }
-        
+
         PlayerController playerController = other.gameObject.GetComponentInParent<PlayerController>();
 
         if (playerController)

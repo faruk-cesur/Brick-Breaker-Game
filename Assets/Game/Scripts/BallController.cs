@@ -1,17 +1,18 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class BallController : MonoBehaviour
 {
-    [Header("Components")] private Rigidbody2D rb;
     public PlayerController playerController;
+    public BrickSpawner brickSpawner;
     private bool isStarted;
+    private Rigidbody2D rb;
+    [HideInInspector] public Vector3 ballStartPos;
+
 
     void Start()
     {
+        ballStartPos = transform.position;
         rb = GetComponent<Rigidbody2D>();
         gameObject.transform.SetParent(playerController.gameObject.transform);
     }
@@ -26,31 +27,34 @@ public class BallController : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.None;
                 rb.AddForce(Vector3.up * 300f);
                 isStarted = true;
-            }   
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         DeathArea deathArea = other.gameObject.GetComponentInParent<DeathArea>();
-        
+
         if (deathArea)
         {
-            foreach (var brick in GameManager.Instance.spawnedBricks)
+            foreach (var brick in brickSpawner.spawnedBricks)
             {
                 brick.transform.position -= new Vector3(0, 0.5f, 0);
             }
-            GameManager.Instance.brickPos = GameManager.Instance.tempBrickPos;
-            
+
+            brickSpawner.brickPos = brickSpawner.tempBrickPos;
+
             for (int i = 0; i < 5; i++)
             {
-                GameManager.Instance.randomBrick = Random.Range(0, 6);
-                GameManager.Instance.spawnedBrick = Instantiate(GameManager.Instance.bricks[GameManager.Instance.randomBrick], GameManager.Instance.brickPos, Quaternion.identity,GameManager.Instance.parentBrick.transform);
-                GameManager.Instance.brickPos = GameManager.Instance.brickPos + new Vector3(1,0,0);
-                GameManager.Instance.spawnedBricks.Add(GameManager.Instance.spawnedBrick);
+                brickSpawner.randomBrick = Random.Range(0, 6);
+                brickSpawner.spawnedBrick =
+                    Instantiate(brickSpawner.bricks[brickSpawner.randomBrick],
+                        brickSpawner.brickPos, Quaternion.identity, brickSpawner.parentBrick.transform);
+                brickSpawner.brickPos = brickSpawner.brickPos + new Vector3(1, 0, 0);
+                brickSpawner.spawnedBricks.Add(brickSpawner.spawnedBrick);
             }
 
-            transform.position = GameManager.Instance.ballStartPos;
+            transform.position = ballStartPos;
             playerController.gameObject.transform.position = new Vector3(0, -4, 0);
             gameObject.transform.SetParent(playerController.gameObject.transform);
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
