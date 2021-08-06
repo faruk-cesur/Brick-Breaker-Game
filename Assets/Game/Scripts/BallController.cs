@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class BallController : MonoBehaviour
@@ -7,6 +10,8 @@ public class BallController : MonoBehaviour
     public PlayerController playerController;
     public BrickSpawner brickSpawner;
     [HideInInspector] public Vector3 ballStartPos;
+    public Slider collisionSlider;
+    public TMP_Text newBricksSpawnedText;
     private Rigidbody2D _rb;
     private bool _isStarted;
     private int _collisionMeter;
@@ -89,6 +94,8 @@ public class BallController : MonoBehaviour
         {
             MoveDownSpawnBricks();
             _collisionMeter = 0;
+            collisionSlider.value = 0;
+            StartCoroutine(NewBricksSpawned());
         }
     }
 
@@ -100,10 +107,20 @@ public class BallController : MonoBehaviour
         {
             _elapsedTime = 0;
             _collisionMeter++;
+            collisionSlider.value++;
             if (_collisionMeter % 25 == 0)
             {
                 MoveDownSpawnBricks();
+                collisionSlider.value = 0;
+                StartCoroutine(NewBricksSpawned());
             }
         }
+    }
+
+    IEnumerator NewBricksSpawned()
+    {
+        newBricksSpawnedText.enabled = true;
+        yield return new WaitForSeconds(3f);
+        newBricksSpawnedText.enabled = false;
     }
 }
