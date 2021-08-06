@@ -8,7 +8,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     public void AfterScene()
