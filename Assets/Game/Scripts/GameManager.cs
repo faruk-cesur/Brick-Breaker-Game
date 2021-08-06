@@ -21,6 +21,5 @@ public class GameManager : MonoBehaviour
     public void Retry()
     {
         //caykur
-        Debug.Log("araba");
     }
 }
