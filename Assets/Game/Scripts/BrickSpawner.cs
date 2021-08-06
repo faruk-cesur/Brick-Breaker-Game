@@ -19,7 +19,7 @@ public class BrickSpawner : MonoBehaviour
     private void Awake()
     {
         spawnedBricks = new List<GameObject>();
-        brickPos = new Vector3(-2f, 4f, 0f);
+        brickPos = new Vector3(-2f, 3f, 0f);
         tempBrickPos = brickPos;
         brickPosY = new Vector3(0f, 0.5f, 0f);
         brickPosX = new Vector3(1f, 0f, 0f);

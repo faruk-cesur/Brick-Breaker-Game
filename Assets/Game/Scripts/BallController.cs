@@ -10,8 +10,7 @@ public class BallController : MonoBehaviour
     public PlayerController playerController;
     public BrickSpawner brickSpawner;
     [HideInInspector] public Vector3 ballStartPos;
-    public Slider collisionSlider;
-    public TMP_Text newBricksSpawnedText;
+
     private Rigidbody2D _rb;
     private bool _isStarted;
     private int _collisionMeter;
@@ -94,8 +93,9 @@ public class BallController : MonoBehaviour
         {
             MoveDownSpawnBricks();
             _collisionMeter = 0;
-            collisionSlider.value = 0;
-            StartCoroutine(NewBricksSpawned());
+            GameManager.instance.collisionSlider.value = 0;
+            StartCoroutine(GameManager.instance.NewBricksSpawnedText());
+            StartCoroutine(GameManager.instance.BallIsDeadText());
         }
     }
 
@@ -107,20 +107,14 @@ public class BallController : MonoBehaviour
         {
             _elapsedTime = 0;
             _collisionMeter++;
-            collisionSlider.value++;
+            GameManager.instance.collisionSlider.value++;
             if (_collisionMeter % 25 == 0)
             {
                 MoveDownSpawnBricks();
-                collisionSlider.value = 0;
-                StartCoroutine(NewBricksSpawned());
+                GameManager.instance.collisionSlider.value = 0;
+                StartCoroutine(GameManager.instance.RoundCompleteText());
+                StartCoroutine(GameManager.instance.NewBricksSpawnedText());
             }
         }
-    }
-
-    IEnumerator NewBricksSpawned()
-    {
-        newBricksSpawnedText.enabled = true;
-        yield return new WaitForSeconds(3f);
-        newBricksSpawnedText.enabled = false;
     }
 }

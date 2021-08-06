@@ -31,6 +31,7 @@ public class BrickController : MonoBehaviour
             GetComponentInChildren<TMP_Text>().text = health.ToString();
             if (health <= 0)
             {
+                GameManager.instance.score++;
                 brickNumbers -= 1;
                 gameObject.SetActive(false);
                 GameManager.instance.AfterScene();
@@ -43,10 +44,13 @@ public class BrickController : MonoBehaviour
         {
             if (isCollide == false)
             {
-                Debug.Log("player öldü");
+                GameManager.instance.gameOverUI.SetActive(true);
+                GameManager.instance.mainGameUI.SetActive(false);
+                GameManager.instance.bricksUI.SetActive(false);
+                playerController.gameObject.SetActive(false);
+                ballController.gameObject.SetActive(false);
                 isCollide = true;
             }
-            // todo game over ekranını göster ve playerprefs highscore göster & player setactive false yap
         }
     }
 }
