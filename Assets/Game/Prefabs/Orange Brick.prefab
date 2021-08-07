@@ -293,5 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85adb4f13e53c5e46b36931128f1f890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballController: {fileID: 0}
+  brickSpawner: {fileID: 0}
   health: 4
-  breakingBricks: 0
+  brickNumbers: 0

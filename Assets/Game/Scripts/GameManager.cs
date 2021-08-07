@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static Camera cam;
     [HideInInspector] public int score;
+    [HideInInspector]public int brickNumbers;
     public TMP_Text scoreText;
     public TMP_Text gameOverScoreText;
     public TMP_Text gameOverBestScoreText;
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Slider collisionSlider;
     public GameObject gameOverUI;
     public GameObject mainGameUI;
+    public GameObject winGameUI;
     public GameObject bricksUI;
 
 
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
     {
         gameOverUI.SetActive(false);
         mainGameUI.SetActive(true);
+        winGameUI.SetActive(false);
     }
 
     private void Update()
@@ -48,13 +51,7 @@ public class GameManager : MonoBehaviour
         gameOverScoreText.text = scoreText.text;
         gameOverBestScoreText.text = PlayerPrefs.GetInt("BestScore").ToString();
     }
-
-    public void AfterScene()
-    {
-        if (BrickController.brickNumbers <= 0)
-        {
-        }
-    }
+    
 
     public IEnumerator NewBricksSpawnedText()
     {

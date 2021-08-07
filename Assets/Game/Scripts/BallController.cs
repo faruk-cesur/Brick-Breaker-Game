@@ -59,7 +59,7 @@ public class BallController : MonoBehaviour
         }
     }
 
-    private void MoveDownSpawnBricks()
+    public void MoveDownSpawnBricks()
     {
         foreach (var brick in brickSpawner.spawnedBricks)
         {
@@ -77,12 +77,40 @@ public class BallController : MonoBehaviour
             brickSpawner.brickPos = brickSpawner.brickPos + new Vector3(1, 0, 0);
             brickSpawner.spawnedBricks.Add(brickSpawner.spawnedBrick);
         }
-
+        GameManager.instance.brickNumbers += 5;
         transform.position = ballStartPos;
         playerController.gameObject.transform.position = new Vector3(0, -4, 0);
         gameObject.transform.SetParent(playerController.gameObject.transform);
         _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         _isStarted = false;
+    }
+
+    public void OnlySpawnBricks()
+    {
+        brickSpawner.brickPos = brickSpawner.tempBrickPos;
+    
+        for (int i = 0; i < 5; i++)
+        {
+            brickSpawner.randomBrick = Random.Range(0, 6);
+            brickSpawner.spawnedBrick =
+                Instantiate(brickSpawner.bricks[brickSpawner.randomBrick],
+                    brickSpawner.brickPos, Quaternion.identity, brickSpawner.parentBrick.transform);
+            brickSpawner.brickPos = brickSpawner.brickPos + new Vector3(1, 0, 0);
+            brickSpawner.spawnedBricks.Add(brickSpawner.spawnedBrick);
+        }
+        GameManager.instance.brickNumbers += 5;
+        transform.position = ballStartPos;
+        playerController.gameObject.transform.position = new Vector3(0, -4, 0);
+        gameObject.transform.SetParent(playerController.gameObject.transform);
+        _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        _isStarted = false;
+    }
+
+    IEnumerator ShowWinScreen()
+    {
+        GameManager.instance.winGameUI.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        GameManager.instance.winGameUI.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -105,6 +133,12 @@ public class BallController : MonoBehaviour
 
         if (player)
         {
+            if (GameManager.instance.brickNumbers <= 0)
+            {
+                OnlySpawnBricks();
+                GameManager.instance.score += 100;
+                StartCoroutine(ShowWinScreen());
+            }
             _elapsedTime = 0;
             _collisionMeter++;
             GameManager.instance.collisionSlider.value++;
