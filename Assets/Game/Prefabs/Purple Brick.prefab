@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 7127611087734784776}
   m_Layer: 0
   m_Name: Purple Brick
-  m_TagString: Block
+  m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,20 +294,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 6
-  breakingBlocks: 0
-  bricks:
-  - {fileID: 5091141661625441480, guid: 95c2fc497930a1d48a087351d7bd87b9, type: 3}
-  - {fileID: 7972778462078356157, guid: 17f49e17b89ac2c469b00e9c2f2e0de8, type: 3}
-  - {fileID: 3115516583947333310, guid: 8f1a3b3aab83ac24e8085f2fd5a25ce6, type: 3}
-  - {fileID: 4037380842027654353, guid: 1919849463789cc4dbdd225e0eccab8f, type: 3}
-  - {fileID: 361820080988937855, guid: 358341f7aee974248bc51406e9b1254e, type: 3}
-  - {fileID: 2750415440325307151}
-  spawnedBricks: []
-  spawnedBrick: {fileID: 0}
-  randomBrick: 0
-  brickPos: {x: 0, y: 0, z: 0}
-  tempBrickPos: {x: 0, y: 0, z: 0}
-  brickPosY: {x: 0, y: 0, z: 0}
-  brickPosX: {x: 0, y: 0, z: 0}
-  verticalBricks: 0
-  parentBrick: {fileID: 1563059947554638697, guid: 245a37eb4c4adc64185c7a83de9d0326, type: 3}
+  breakingBricks: 0

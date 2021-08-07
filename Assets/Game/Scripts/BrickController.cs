@@ -6,19 +6,19 @@ public class BrickController : MonoBehaviour
     public int health;
     public static int brickNumbers;
     public bool breakingBricks;
-    private bool isCollide;
+    private bool _isCollide;
 
 
     void Start()
     {
-        breakingBricks = (this.tag == "Block");
+        breakingBricks = (this.CompareTag("Brick"));
         if (breakingBricks)
         {
             brickNumbers++;
         }
 
         GameManager.instance = GameObject.FindObjectOfType<GameManager>();
-    }
+    }   
 
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -42,14 +42,14 @@ public class BrickController : MonoBehaviour
 
         if (playerController)
         {
-            if (isCollide == false)
+            if (_isCollide == false)
             {
                 GameManager.instance.gameOverUI.SetActive(true);
                 GameManager.instance.mainGameUI.SetActive(false);
                 GameManager.instance.bricksUI.SetActive(false);
                 playerController.gameObject.SetActive(false);
                 ballController.gameObject.SetActive(false);
-                isCollide = true;
+                _isCollide = true;
             }
         }
     }
