@@ -7,10 +7,9 @@ using Random = UnityEngine.Random;
 
 public class PowerUpSpawner : MonoBehaviour
 {
+    // Variables Defined.
     public List<GameObject> spawnedPowerUps;
     [HideInInspector] public GameObject spawnedPowerUp;
-
-
     public GameObject powerGoldenBall;
     public GameObject powerForce;
     public GameObject powerTaller;
@@ -30,36 +29,41 @@ public class PowerUpSpawner : MonoBehaviour
 
     private void Start()
     {
-        SpawnPowerUps();
+        SpawnPowerUpsOnStart();
     }
 
 
-    private void SpawnPowerUps()
+    // PowerUps are spawning randomly in the bricks on start of the game
+    private void SpawnPowerUpsOnStart()
     {
         for (int i = 0; i < 2; i++)
         {
             randomSpawnPosX = Random.Range(-2, 2);
             randomSpawnPosY = Random.Range(1, 3);
             spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
-            spawnedPowerUp = Instantiate(powerGoldenBall, spawnPos, quaternion.identity,powerUpsParent.gameObject.transform);
+            spawnedPowerUp = Instantiate(powerGoldenBall, spawnPos, quaternion.identity,
+                powerUpsParent.gameObject.transform);
             spawnedPowerUps.Add(spawnedPowerUp);
             randomSpawnPosX = Random.Range(-2, 2);
             randomSpawnPosY = Random.Range(1, 3);
             spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
-            spawnedPowerUp = Instantiate(powerForce, spawnPos, quaternion.identity,powerUpsParent.gameObject.transform);
+            spawnedPowerUp = Instantiate(powerForce, spawnPos, quaternion.identity,
+                powerUpsParent.gameObject.transform);
             spawnedPowerUps.Add(spawnedPowerUp);
             randomSpawnPosX = Random.Range(-2, 2);
             randomSpawnPosY = Random.Range(1, 3);
             spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
-            spawnedPowerUp = Instantiate(powerTaller, spawnPos, quaternion.identity,powerUpsParent.gameObject.transform);
+            spawnedPowerUp = Instantiate(powerTaller, spawnPos, quaternion.identity,
+                powerUpsParent.gameObject.transform);
             spawnedPowerUps.Add(spawnedPowerUp);
         }
     }
 
+    
+    // Powerups are spawning for %20 chance for every single brick line.
     public void SpawnPowerUpsEachRound()
     {
-        Debug.Log("spawneachround");
-        randomSpawnChance = Random.Range(1, 5);
+        randomSpawnChance = Random.Range(1, 4);
 
         if (randomSpawnChance == 1)
         {
@@ -69,7 +73,8 @@ public class PowerUpSpawner : MonoBehaviour
             {
                 randomSpawnPosX = Random.Range(-2, 2);
                 spawnPos = new Vector3(randomSpawnPosX, 3, 0);
-                spawnedPowerUp =Instantiate(powerGoldenBall, spawnPos, quaternion.identity,powerUpsParent.gameObject.transform);
+                spawnedPowerUp = Instantiate(powerGoldenBall, spawnPos, quaternion.identity,
+                    powerUpsParent.gameObject.transform);
                 spawnedPowerUps.Add(spawnedPowerUp);
             }
 
@@ -77,7 +82,8 @@ public class PowerUpSpawner : MonoBehaviour
             {
                 randomSpawnPosX = Random.Range(-2, 2);
                 spawnPos = new Vector3(randomSpawnPosX, 3, 0);
-                spawnedPowerUp = Instantiate(powerForce, spawnPos, quaternion.identity,powerUpsParent.gameObject.transform);
+                spawnedPowerUp = Instantiate(powerForce, spawnPos, quaternion.identity,
+                    powerUpsParent.gameObject.transform);
                 spawnedPowerUps.Add(spawnedPowerUp);
             }
 
@@ -85,7 +91,8 @@ public class PowerUpSpawner : MonoBehaviour
             {
                 randomSpawnPosX = Random.Range(-2, 2);
                 spawnPos = new Vector3(randomSpawnPosX, 3, 0);
-                spawnedPowerUp = Instantiate(powerTaller, spawnPos, quaternion.identity,powerUpsParent.gameObject.transform);
+                spawnedPowerUp = Instantiate(powerTaller, spawnPos, quaternion.identity,
+                    powerUpsParent.gameObject.transform);
                 spawnedPowerUps.Add(spawnedPowerUp);
             }
         }

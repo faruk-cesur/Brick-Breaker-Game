@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    
+    // Variables Defined.
     public static GameManager instance;
     public static Camera cam;
     [HideInInspector] public int score;
-    [HideInInspector]public int brickNumbers;
+    [HideInInspector] public int brickNumbers;
     public TMP_Text scoreText;
     public TMP_Text gameOverScoreText;
     public TMP_Text gameOverBestScoreText;
@@ -22,9 +24,10 @@ public class GameManager : MonoBehaviour
     public GameObject mainGameUI;
     public GameObject winGameUI;
     public GameObject bricksUI;
-    [HideInInspector]public bool powerForce;
+    [HideInInspector] public bool powerForce;
 
 
+    // GameManager Singleton Design Pattern
     private void Awake()
     {
         if (instance)
@@ -36,8 +39,8 @@ public class GameManager : MonoBehaviour
             instance = this;
         }
     }
-
-
+    
+    // Closing Game Over and Win Screens when game starts and open MainGame UI
     private void Start()
     {
         gameOverUI.SetActive(false);
@@ -45,6 +48,7 @@ public class GameManager : MonoBehaviour
         winGameUI.SetActive(false);
     }
 
+    // Defining scores to texts on each frame
     private void Update()
     {
         SetPlayerPrefs();
@@ -52,8 +56,9 @@ public class GameManager : MonoBehaviour
         gameOverScoreText.text = scoreText.text;
         gameOverBestScoreText.text = PlayerPrefs.GetInt("BestScore").ToString();
     }
-    
 
+
+    // It's a text with an animaton that will appear for 3 seconds.
     public IEnumerator NewBricksSpawnedText()
     {
         newBricksSpawnedText.enabled = true;
@@ -61,6 +66,7 @@ public class GameManager : MonoBehaviour
         newBricksSpawnedText.enabled = false;
     }
 
+    // It's a text with an animaton that will appear for 3 seconds.
     public IEnumerator BallIsDeadText()
     {
         ballIsDeadText.enabled = true;
@@ -68,6 +74,7 @@ public class GameManager : MonoBehaviour
         ballIsDeadText.enabled = false;
     }
 
+    // It's a text with an animaton that will appear for 3 seconds.
     public IEnumerator RoundCompleteText()
     {
         roundCompleteText.enabled = true;
@@ -75,12 +82,15 @@ public class GameManager : MonoBehaviour
         roundCompleteText.enabled = false;
     }
 
+    // This is a button we can click when game is over. It restarts the game.
     public void PlayAgainButton()
     {
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.buildIndex);
     }
 
+    
+    // Keeping the BestScore on HDD, It will stays forever even if you close the game.
     public void SetPlayerPrefs()
     {
         if (!PlayerPrefs.HasKey("BestScore"))

@@ -7,11 +7,10 @@ public class PlayerController : MonoBehaviour
         GameManager.cam = Camera.main;
     }
 
+    // Using Swerve movement to left to right without clicking the mouse.
     void Update()
     {
-        Vector3 mousePos =
-            GameManager.cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, transform.position.y,
-                transform.position.z));
+        Vector3 mousePos = GameManager.cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, transform.position.y, transform.position.z));
 
         mousePos.x = Mathf.Clamp(mousePos.x, -2f, 2f);
 
