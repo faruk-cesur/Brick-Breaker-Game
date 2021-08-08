@@ -119,6 +119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  powerUpSpawner: {fileID: 0}
   brickSpawner: {fileID: 0}
   goldenBall: {fileID: 1180135013043089305, guid: be9c7817f9d93964f8ea4e5c1ddc29f3, type: 3}
   ballStartPos: {x: 0, y: 0, z: 0}

@@ -8,6 +8,7 @@ using Random = UnityEngine.Random;
 public class BallController : MonoBehaviour
 {
     public PlayerController playerController;
+    public PowerUpSpawner powerUpSpawner;
     public BrickSpawner brickSpawner;
     public GameObject goldenBall;
     [HideInInspector] public Vector3 ballStartPos;
@@ -73,6 +74,11 @@ public class BallController : MonoBehaviour
             brick.transform.position -= new Vector3(0, 0.5f, 0);
         }
 
+        foreach (var powerUp in powerUpSpawner.spawnedPowerUps)
+        {
+            powerUp.transform.position -= new Vector3(0, 0.5f, 0);
+        }
+
         brickSpawner.brickPos = brickSpawner.tempBrickPos;
 
         for (int i = 0; i < 5; i++)
@@ -85,6 +91,7 @@ public class BallController : MonoBehaviour
             brickSpawner.spawnedBricks.Add(brickSpawner.spawnedBrick);
         }
 
+        powerUpSpawner.SpawnPowerUpsEachRound();
         GameManager.instance.brickNumbers += 5;
         transform.position = ballStartPos;
         playerController.gameObject.transform.position = new Vector3(0, -4, 0);
