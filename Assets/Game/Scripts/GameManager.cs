@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public GameObject mainGameUI;
     public GameObject winGameUI;
     public GameObject bricksUI;
-    public bool powerForce;
+    [HideInInspector]public bool powerForce;
 
 
     private void Awake()

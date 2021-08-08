@@ -8,6 +8,8 @@ public class PowerUpSpawner : MonoBehaviour
 {
     public GameObject powerGoldenBall;
     public GameObject powerForce;
+    public GameObject powerTaller;
+    
     private int randomSpawnPosY;
     private int randomSpawnPosX;
     private Vector3 spawnPos;
@@ -31,6 +33,10 @@ public class PowerUpSpawner : MonoBehaviour
             randomSpawnPosY = Random.Range(1, 3);
             spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
             Instantiate(powerForce, spawnPos, quaternion.identity);
+            randomSpawnPosX = Random.Range(-2, 2);
+            randomSpawnPosY = Random.Range(1, 3);
+            spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
+            Instantiate(powerTaller, spawnPos, quaternion.identity);
         }
     }
 }

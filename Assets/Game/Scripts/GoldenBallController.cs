@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class GoldenBallController : MonoBehaviour
 {
     public BallController ballController;
-    
+
 
     private Rigidbody2D _rb;
     
@@ -43,6 +44,14 @@ public class GoldenBallController : MonoBehaviour
         if (powerForce)
         {
             StartCoroutine(ballController.PowerForceDuration());
+            Destroy(other.gameObject);
+        }
+        
+        PowerTallerPlayer powerTallerPlayer = other.gameObject.GetComponentInParent<PowerTallerPlayer>();
+
+        if (powerTallerPlayer)
+        {
+            StartCoroutine(ballController.PowerTallerDuration());
             Destroy(other.gameObject);
         }
     }

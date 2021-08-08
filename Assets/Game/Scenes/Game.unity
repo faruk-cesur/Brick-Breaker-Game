@@ -702,6 +702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerGoldenBall: {fileID: 381986423314622558, guid: c4c9c235951568542aad0a5e0dcf5c4b, type: 3}
   powerForce: {fileID: 6234024840809300428, guid: 6114294425eb84d44b969a7b7ab3243f, type: 3}
+  powerTaller: {fileID: 6136434901131440201, guid: 983e45e28601f694dbf4749aa539b14b, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1805,7 +1806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 0.5686275}
+  m_Color: {r: 0, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2142,7 +2143,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 620486994}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 25
+  m_MaxValue: 20
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -2519,38 +2520,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1763691047 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3680653033860229243, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
-  m_PrefabInstance: {fileID: 6359874073229514562}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1763691048
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763691047}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
 --- !u!114 &1763691049 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 760101069529867635, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
   m_PrefabInstance: {fileID: 6359874073229514562}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1763691047}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d52c7b19322f5a04eab93e6afeb2a9f6, type: 3}
@@ -3460,10 +3435,6 @@ PrefabInstance:
     - target: {fileID: 7296337791179868289, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
       propertyPath: m_RootOrder
       value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296337791179868289, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7296337791179868289, guid: cc6cc9468d17671408078ce804e9a761, type: 3}
       propertyPath: m_LocalPosition.x

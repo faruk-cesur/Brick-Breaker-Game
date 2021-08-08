@@ -14,12 +14,18 @@ public class BallController : MonoBehaviour
 
     private Rigidbody2D _rb;
     private bool _isStarted;
+    private bool _isTaller;
     private int _collisionMeter;
     private float _elapsedTime;
 
 
     void Start()
     {
+        if (_isTaller == false)
+        {
+            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 1);
+        }
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         ballStartPos = transform.position;
         _rb = GetComponent<Rigidbody2D>();
         gameObject.transform.SetParent(playerController.gameObject.transform);
@@ -120,9 +126,32 @@ public class BallController : MonoBehaviour
     {
         GameManager.instance.powerForce = true;
         gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        gameObject.transform.localScale += new Vector3(0.5f, 0.5f, 0);
         yield return new WaitForSeconds(10f);
         GameManager.instance.powerForce = false;
+        gameObject.transform.localScale -= new Vector3(0.5f, 0.5f, 0);
         gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
+    public IEnumerator PowerTallerDuration()
+    {
+        playerController.gameObject.transform.localScale += new Vector3(1, 0.5f, 0);
+        playerController.gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+        _isTaller = true;
+        yield return new WaitForSeconds(10f);
+        if (gameObject.transform.parent == null)
+        {
+            playerController.gameObject.transform.localScale -= new Vector3(1, 0.5f, 0);
+        }
+        else
+        {
+            gameObject.transform.SetParent(null);
+            playerController.gameObject.transform.localScale -= new Vector3(1, 0.5f, 0);
+            gameObject.transform.SetParent(playerController.gameObject.transform);
+
+        }
+        playerController.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        _isTaller = false;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -154,6 +183,14 @@ public class BallController : MonoBehaviour
             StartCoroutine(PowerForceDuration());
             Destroy(other.gameObject);
         }
+        
+        PowerTallerPlayer powerTallerPlayer = other.gameObject.GetComponentInParent<PowerTallerPlayer>();
+
+        if (powerTallerPlayer)
+        {
+            StartCoroutine(PowerTallerDuration());
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -172,7 +209,7 @@ public class BallController : MonoBehaviour
             _elapsedTime = 0;
             _collisionMeter++;
             GameManager.instance.collisionSlider.value++;
-            if (_collisionMeter % 25 == 0)
+            if (_collisionMeter % 20 == 0)
             {
                 MoveDownSpawnBricks();
                 GameManager.instance.collisionSlider.value = 0;
