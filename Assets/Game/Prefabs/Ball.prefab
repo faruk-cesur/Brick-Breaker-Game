@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1180135013043089305}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2746839580606631015, guid: 257000a7bc25ca241a01e0e9f7b243fe, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -121,8 +121,8 @@ MonoBehaviour:
   playerController: {fileID: 0}
   powerUpSpawner: {fileID: 0}
   brickSpawner: {fileID: 0}
-  goldenBall: {fileID: 1180135013043089305, guid: be9c7817f9d93964f8ea4e5c1ddc29f3, type: 3}
   ballStartPos: {x: 0, y: 0, z: 0}
+  goldenBall: {fileID: 1180135013043089305, guid: be9c7817f9d93964f8ea4e5c1ddc29f3, type: 3}
 --- !u!58 &1878489333709117691
 CircleCollider2D:
   m_ObjectHideFlags: 0
