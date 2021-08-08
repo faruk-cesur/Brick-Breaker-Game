@@ -49,7 +49,7 @@ public class BallController : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
 
-        if (_elapsedTime >= 10)
+        if (_elapsedTime >= 10 && _isStarted == true)
         {
             transform.position = ballStartPos;
             playerController.gameObject.transform.position = new Vector3(0, -4, 0);
