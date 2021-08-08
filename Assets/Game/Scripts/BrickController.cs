@@ -14,14 +14,29 @@ public class BrickController : MonoBehaviour
 
         if (ball ||goldenBall)
         {
-            health -= 1;
-            GetComponentInChildren<TMP_Text>().text = health.ToString();
-            if (health <= 0)
+            if (GameManager.instance.powerForce == false)
             {
-                GameManager.instance.score++;
-                GameManager.instance.brickNumbers -= 1;
-                gameObject.SetActive(false);
+                health -= 1;
+                GetComponentInChildren<TMP_Text>().text = health.ToString();
+                if (health <= 0)
+                {
+                    GameManager.instance.score++;
+                    GameManager.instance.brickNumbers -= 1;
+                    gameObject.SetActive(false);
+                }
             }
+            else
+            {
+                health -= 6;
+                GetComponentInChildren<TMP_Text>().text = health.ToString();
+                if (health <= 0)
+                {
+                    GameManager.instance.score++;
+                    GameManager.instance.brickNumbers -= 1;
+                    gameObject.SetActive(false);
+                }
+            }
+            
         }
 
         PlayerController playerController = other.gameObject.GetComponentInParent<PlayerController>();

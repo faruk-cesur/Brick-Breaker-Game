@@ -78,6 +78,7 @@ public class BallController : MonoBehaviour
             brickSpawner.brickPos = brickSpawner.brickPos + new Vector3(1, 0, 0);
             brickSpawner.spawnedBricks.Add(brickSpawner.spawnedBrick);
         }
+
         GameManager.instance.brickNumbers += 5;
         transform.position = ballStartPos;
         playerController.gameObject.transform.position = new Vector3(0, -4, 0);
@@ -89,7 +90,7 @@ public class BallController : MonoBehaviour
     public void OnlySpawnBricks()
     {
         brickSpawner.brickPos = brickSpawner.tempBrickPos;
-    
+
         for (int i = 0; i < 5; i++)
         {
             brickSpawner.randomBrick = Random.Range(0, 6);
@@ -99,6 +100,7 @@ public class BallController : MonoBehaviour
             brickSpawner.brickPos = brickSpawner.brickPos + new Vector3(1, 0, 0);
             brickSpawner.spawnedBricks.Add(brickSpawner.spawnedBrick);
         }
+
         GameManager.instance.brickNumbers += 5;
         transform.position = ballStartPos;
         playerController.gameObject.transform.position = new Vector3(0, -4, 0);
@@ -114,6 +116,15 @@ public class BallController : MonoBehaviour
         GameManager.instance.winGameUI.SetActive(false);
     }
 
+    public IEnumerator PowerForceDuration()
+    {
+        GameManager.instance.powerForce = true;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(10f);
+        GameManager.instance.powerForce = false;
+        gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         DeathArea deathArea = other.gameObject.GetComponentInParent<DeathArea>();
@@ -126,13 +137,21 @@ public class BallController : MonoBehaviour
             StartCoroutine(GameManager.instance.NewBricksSpawnedText());
             StartCoroutine(GameManager.instance.BallIsDeadText());
         }
-        
+
         PowerGoldenBall powerGoldenBall = other.gameObject.GetComponentInParent<PowerGoldenBall>();
 
         if (powerGoldenBall)
         {
-            var newBall = Instantiate(goldenBall,transform.position,Quaternion.identity,null);
+            var newBall = Instantiate(goldenBall, transform.position, Quaternion.identity, null);
             newBall.GetComponent<SpriteRenderer>().color = Color.yellow;
+            Destroy(other.gameObject);
+        }
+
+        PowerForce powerForce = other.gameObject.GetComponentInParent<PowerForce>();
+
+        if (powerForce)
+        {
+            StartCoroutine(PowerForceDuration());
             Destroy(other.gameObject);
         }
     }
@@ -149,6 +168,7 @@ public class BallController : MonoBehaviour
                 GameManager.instance.score += 100;
                 StartCoroutine(ShowWinScreen());
             }
+
             _elapsedTime = 0;
             _collisionMeter++;
             GameManager.instance.collisionSlider.value++;

@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 481806437}
   - component: {fileID: 481806438}
   m_Layer: 0
-  m_Name: GoldenBallSpawner
+  m_Name: PowerUpSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -701,9 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerGoldenBall: {fileID: 381986423314622558, guid: c4c9c235951568542aad0a5e0dcf5c4b, type: 3}
-  randomSpawnPosY: 0
-  randomSpawnPosX: 0
-  spawnPos: {x: 0, y: 0, z: 0}
+  powerForce: {fileID: 6234024840809300428, guid: 6114294425eb84d44b969a7b7ab3243f, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +2042,7 @@ MonoBehaviour:
   mainGameUI: {fileID: 772866131}
   winGameUI: {fileID: 1480856313}
   bricksUI: {fileID: 459506242}
+  powerForce: 0
 --- !u!4 &1415193692
 Transform:
   m_ObjectHideFlags: 0

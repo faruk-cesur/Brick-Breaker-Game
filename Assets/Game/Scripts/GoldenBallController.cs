@@ -37,5 +37,13 @@ public class GoldenBallController : MonoBehaviour
             newBall.GetComponent<SpriteRenderer>().color = Color.yellow;
             Destroy(other.gameObject);
         }
+        
+        PowerForce powerForce = other.gameObject.GetComponentInParent<PowerForce>();
+
+        if (powerForce)
+        {
+            StartCoroutine(ballController.PowerForceDuration());
+            Destroy(other.gameObject);
+        }
     }
 }

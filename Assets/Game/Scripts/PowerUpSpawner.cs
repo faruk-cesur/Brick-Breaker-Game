@@ -4,12 +4,13 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-public class GoldenBallSpawner : MonoBehaviour
+public class PowerUpSpawner : MonoBehaviour
 {
     public GameObject powerGoldenBall;
-    public int randomSpawnPosY;
-    public int randomSpawnPosX;
-    public Vector3 spawnPos;
+    public GameObject powerForce;
+    private int randomSpawnPosY;
+    private int randomSpawnPosX;
+    private Vector3 spawnPos;
 
 
     private void Start()
@@ -26,6 +27,10 @@ public class GoldenBallSpawner : MonoBehaviour
             randomSpawnPosY = Random.Range(1, 3);
             spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
             Instantiate(powerGoldenBall, spawnPos, quaternion.identity);
-        } 
+            randomSpawnPosX = Random.Range(-2, 2);
+            randomSpawnPosY = Random.Range(1, 3);
+            spawnPos = new Vector3(randomSpawnPosX, randomSpawnPosY, 0);
+            Instantiate(powerForce, spawnPos, quaternion.identity);
+        }
     }
 }
