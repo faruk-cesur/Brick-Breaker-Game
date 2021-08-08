@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour
 {
     public PlayerController playerController;
     public BrickSpawner brickSpawner;
+    public GameObject goldenBall;
     [HideInInspector] public Vector3 ballStartPos;
 
     private Rigidbody2D _rb;
@@ -30,7 +31,7 @@ public class BallController : MonoBehaviour
         FixBugBallPosition();
     }
 
-    private void StartMove()
+    public void StartMove()
     {
         if (_isStarted == false)
         {
@@ -48,7 +49,7 @@ public class BallController : MonoBehaviour
     {
         _elapsedTime += Time.deltaTime;
 
-        if (_elapsedTime >= 20)
+        if (_elapsedTime >= 10)
         {
             transform.position = ballStartPos;
             playerController.gameObject.transform.position = new Vector3(0, -4, 0);
@@ -124,6 +125,15 @@ public class BallController : MonoBehaviour
             GameManager.instance.collisionSlider.value = 0;
             StartCoroutine(GameManager.instance.NewBricksSpawnedText());
             StartCoroutine(GameManager.instance.BallIsDeadText());
+        }
+        
+        PowerGoldenBall powerGoldenBall = other.gameObject.GetComponentInParent<PowerGoldenBall>();
+
+        if (powerGoldenBall)
+        {
+            var newBall = Instantiate(goldenBall,transform.position,Quaternion.identity,null);
+            newBall.GetComponent<SpriteRenderer>().color = Color.yellow;
+            Destroy(other.gameObject);
         }
     }
 

@@ -10,8 +10,9 @@ public class BrickController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         BallController ball = other.gameObject.GetComponentInParent<BallController>();
+        GoldenBallController goldenBall = other.gameObject.GetComponentInParent<GoldenBallController>();
 
-        if (ball)
+        if (ball ||goldenBall)
         {
             health -= 1;
             GetComponentInChildren<TMP_Text>().text = health.ToString();

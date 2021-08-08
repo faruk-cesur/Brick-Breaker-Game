@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3169849572724410726}
   - component: {fileID: 6352444540148614620}
   - component: {fileID: 5322203438669304112}
-  - component: {fileID: 6041921684434881280}
   - component: {fileID: 1878489333709117691}
+  - component: {fileID: 392623445}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: GoldenBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,24 +104,8 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 2fbe8f8ba6325834288404c1d6dd9ce4, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6041921684434881280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1180135013043089305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 022f6171386f51942899ab8fc251e1c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
-  brickSpawner: {fileID: 0}
-  goldenBall: {fileID: 1180135013043089305, guid: be9c7817f9d93964f8ea4e5c1ddc29f3, type: 3}
-  ballStartPos: {x: 0, y: 0, z: 0}
 --- !u!58 &1878489333709117691
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -138,3 +122,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.34
+--- !u!114 &392623445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180135013043089305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dc76f2373564b10873e1bc22cae67cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballController: {fileID: 6041921684434881280, guid: 80cec88a5646f844286fa91c8061f184, type: 3}
